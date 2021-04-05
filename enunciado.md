@@ -206,7 +206,7 @@ Para rodar, recomendamos que faça:
 
 Depois:
 
-    rosrun sim211 Q4.py
+    rosrun sim211 Q3.py
 
 
 
