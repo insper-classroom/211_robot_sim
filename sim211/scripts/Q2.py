@@ -83,7 +83,6 @@ def roda_todo_frame(imagem):
         print("Descartando por causa do delay do frame:", delay)
         return 
     try:
-        antes = time.clock()
         temp_image = bridge.compressed_imgmsg_to_cv2(imagem, "bgr8")
         # Note que os resultados já são guardados automaticamente na variável
         # chamada resultados
@@ -93,7 +92,6 @@ def roda_todo_frame(imagem):
             # o resultado            
             pass
 
-        depois = time.clock()
         # Desnecessário - Hough e MobileNet já abrem janelas
         cv_image = saida_net.copy()
         cv2.imshow("cv_image", cv_image)

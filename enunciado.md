@@ -162,7 +162,7 @@ Depois *salve* estes pesos na pasta:
 
 Depois o seu código:
 
-    rosrun sim211 Q3.py
+    rosrun sim211 Q2.py
 
 
 

@@ -47,10 +47,6 @@ id = 0
 frame = "camera_link"
 # frame = "head_camera"  # DESCOMENTE para usar com webcam USB via roslaunch tag_tracking usbcam
 
-tfl = 0
-
-tf_buffer = tf2_ros.Buffer()
-
 
 # A função a seguir é chamada sempre que chega um novo frame
 def roda_todo_frame(imagem):
@@ -66,7 +62,6 @@ def roda_todo_frame(imagem):
     delay = lag.nsecs
 
     try:
-        antes = time.clock()
         temp_image = bridge.compressed_imgmsg_to_cv2(imagem, "bgr8")
         cv_image = temp_image.copy()
         cv2.imshow("cv_image", cv_image)
