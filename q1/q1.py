@@ -3,6 +3,9 @@
 
 # Este NÃO é um programa ROS
 
+# GABARITO feito na aula de 06/04
+
+
 from __future__ import print_function, division 
 
 import cv2
@@ -18,6 +21,61 @@ print("Diretório de trabalho: ", os.getcwd())
 # https://github.com/Insper/robot20/blob/master/media/dominoes.mp4
     
 video = "dominoes.mp4"
+
+
+def conta_regioes(gray):
+    pass
+
+def processa(gray_img):
+
+    gray= gray_img.copy()
+
+    # 1. Limiarizar
+    limiar = 150
+    gray[gray <=limiar] =  0
+    gray[gray > limiar] = 255
+
+    #cv2.imshow("Limiar", gray)
+
+    # 2. Achar limites da area mais clara
+
+    i_min = gray.shape[0] + 1
+    j_min = gray.shape[1] + 1
+    
+
+    i_max = -1 
+    j_max = -1 
+
+    for i in range(gray.shape[0]):
+        for j in range(gray.shape[1]):
+            if gray[i][j] == 255: 
+                if i < i_min:
+                    i_min = i
+                if i > i_max:
+                    i_max = i 
+                if j < j_min: 
+                    j_min = j 
+                if j > j_max: 
+                    j_max = j
+    
+    bgr = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+
+    cv2.rectangle(bgr, (j_min, i_min), (j_max, i_max), (0,0,255), 4)
+
+    cv2.imshow("Limites", bgr ) 
+
+
+          
+
+
+
+
+    # 3. recortar em 2 sub imagens
+
+    # 4. Contar contornos em cada
+
+
+
 
 
 if __name__ == "__main__":
@@ -42,11 +100,13 @@ if __name__ == "__main__":
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+        processa(gray)
+
 
         # NOTE que em testes a OpenCV 4.0 requereu frames em BGR para o cv2.imshow
         cv2.imshow('imagem', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(33) & 0xFF == ord('q'):
             break
 
     # When everything done, release the capture
