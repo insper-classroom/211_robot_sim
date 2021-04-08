@@ -4,6 +4,8 @@
 # Rodar com 
 # roslaunch my_simulation rampa.launch
 
+# Este código pode ser visto rodando em:  https://youtu.be/_XOmDGF49vM
+
 
 from __future__ import print_function, division
 import rospy
